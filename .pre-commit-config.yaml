@@ -1,0 +1,44 @@
+# https://pre-commit.com/hooks.html
+
+default_language_version:
+    python: python3.9
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.9.3
+    hooks:
+      - id: isort
+        name: isort
+        exclude: alembic/env.py
+
+  - repo: https://github.com/hadialqattan/pycln
+    rev: v1.1.0 # Possible releases: https://github.com/hadialqattan/pycln/releases
+    hooks:
+      - id: pycln
+        args: [ --config=pyproject.toml ]
+
+  - repo: https://github.com/ambv/black
+    rev: 22.10.0
+    hooks:
+      - id: black
+        language_version: python3.9
+        exclude: alembic/env.py
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 4.0.1
+    hooks:
+      - id: flake8
+        exclude: alembic/env.py
+        args: [
+        "--ignore=E203,W503",
+        "--max-line-length=120",
+        "--per-file-ignores=tests/*.py:S101",
+        "--exclude=.git __pycache__ tmp alembic/env.py",
+      ]
