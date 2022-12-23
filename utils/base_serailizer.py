@@ -12,7 +12,7 @@ class BaseResponseSerializer(BaseModel):
         read_with_orm_mode = True
 
 
-@dataclass()
+@dataclass
 class BaseRequestSerializer:
     search: Optional[str] = Query(None)
     order_by: Optional[str] = Query(None)
