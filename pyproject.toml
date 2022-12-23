@@ -11,6 +11,11 @@ sqlmodel = "^0.0.8"
 SQLAlchemy = "1.4.35"
 alembic = "^1.9.0"
 SQLAlchemy-Utils = "^0.38.3"
+fastapi-pagination = "^0.11.1"
+fastapi-utils = "^0.2.1"
+uvicorn = "^0.20.0"
+python-dotenv = "^0.21.0"
+psycopg2-binary = "^2.9.5"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

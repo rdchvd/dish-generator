@@ -1,9 +1,11 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
-app = FastAPI()
+from app.products.views import products_router
 
-# app.include_router(auth_router)
+app = FastAPI(openapi_url="/openapi/", docs_url="/docs/")
+
+app.include_router(products_router)
 
 
 app.add_middleware(
