@@ -29,8 +29,8 @@ class ProductFilter(Filter):
     name__in: Optional[list[str]]
     name__not_in: Optional[list[str]]
 
-    recipe__components__name__in: Optional[str]
-    recipe__components__name__not_in: Optional[str]
+    ingredients__include: Optional[list[str]]
+    ingredients__exclude: Optional[list[str]]
 
     calories__lte: Optional[float]
     calories__gte: Optional[float]
