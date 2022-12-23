@@ -42,7 +42,7 @@ class ComponentResponseSerializer(BaseResponseSerializer):
         return S3Storage().get_url(value) if value else None
 
 
-class ReceiptResponseSerializer(BaseResponseSerializer):
+class RecipeResponseSerializer(BaseResponseSerializer):
     text: str
     components: Optional[List[Optional[ComponentResponseSerializer]]]
 
@@ -51,7 +51,7 @@ class RetrieveProductResponseSerializer(BaseResponseSerializer):
     id: UUID
     name: str
     is_dish: bool
-    receipts: Optional[List[Optional[ReceiptResponseSerializer]]] = None
+    recipes: Optional[List[Optional[RecipeResponseSerializer]]] = None
     calories: Optional[float] = None
     proteins: Optional[float] = None
     fats: Optional[float] = None
