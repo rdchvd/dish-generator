@@ -92,6 +92,23 @@ doc = ["mdx-include (>=1.4.1,<2.0.0)", "mkdocs (>=1.1.2,<2.0.0)", "mkdocs-markdo
 test = ["anyio[trio] (>=3.2.1,<4.0.0)", "black (==22.10.0)", "coverage[toml] (>=6.5.0,<7.0)", "databases[sqlite] (>=0.3.2,<0.7.0)", "email-validator (>=1.1.1,<2.0.0)", "flask (>=1.1.2,<3.0.0)", "httpx (>=0.23.0,<0.24.0)", "isort (>=5.0.6,<6.0.0)", "mypy (==0.982)", "orjson (>=3.2.1,<4.0.0)", "passlib[bcrypt] (>=1.7.2,<2.0.0)", "peewee (>=3.13.3,<4.0.0)", "pytest (>=7.1.3,<8.0.0)", "python-jose[cryptography] (>=3.3.0,<4.0.0)", "python-multipart (>=0.0.5,<0.0.6)", "pyyaml (>=5.3.1,<7.0.0)", "ruff (==0.0.138)", "sqlalchemy (>=1.3.18,<=1.4.41)", "types-orjson (==3.6.2)", "types-ujson (==5.5.0)", "ujson (>=4.0.1,!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0,<6.0.0)"]
 
 [[package]]
+name = "fastapi-filter"
+version = "0.5.1"
+description = "FastAPI filter"
+category = "main"
+optional = false
+python-versions = ">=3.8,<3.12"
+
+[package.dependencies]
+fastapi = ">=0.78,<0.89"
+pydantic = ">=1.10.0,<2.0.0"
+
+[package.extras]
+all = ["SQLAlchemy (>=1.4.36,<1.5.0)", "mongoengine (>=0.24.1,<0.25.0)"]
+mongoengine = ["mongoengine (>=0.24.1,<0.25.0)"]
+sqlalchemy = ["SQLAlchemy (>=1.4.36,<1.5.0)"]
+
+[[package]]
 name = "fastapi-pagination"
 version = "0.11.1"
 description = "FastAPI pagination"
@@ -412,8 +429,8 @@ python-versions = "*"
 
 [metadata]
 lock-version = "1.1"
-python-versions = "^3.9"
-content-hash = "b5baba2c4744717db8b4b215551698cb7952960ab200b1e5db3127f0272099f4"
+python-versions = ">=3.9,<3.12"
+content-hash = "3689d3e54f4b08185be4b6a39bd0debfecbbb05e9d5a0fbdde35d80c9cc4c8e1"
 
 [metadata.files]
 alembic = [
@@ -442,6 +459,10 @@ colorama = [
 fastapi = [
     {file = "fastapi-0.88.0-py3-none-any.whl", hash = "sha256:263b718bb384422fe3d042ffc9a0c8dece5e034ab6586ff034f6b4b1667c3eee"},
     {file = "fastapi-0.88.0.tar.gz", hash = "sha256:915bf304180a0e7c5605ec81097b7d4cd8826ff87a02bb198e336fb9f3b5ff02"},
+]
+fastapi-filter = [
+    {file = "fastapi-filter-0.5.1.tar.gz", hash = "sha256:81292cf7807945cf01c93f0e59d8ab81afbf215781fbf92d118dd0f7f9ea54fe"},
+    {file = "fastapi_filter-0.5.1-py3-none-any.whl", hash = "sha256:dc2ba254ac518a8374f963e2fe938787015085de01c716e0f14f0ea50a08859e"},
 ]
 fastapi-pagination = [
     {file = "fastapi_pagination-0.11.1-py3-none-any.whl", hash = "sha256:ae02094f16bfe361cd38d73bf38ad1df3d22cf1c7fb08bcec3e82df72dfe58dd"},

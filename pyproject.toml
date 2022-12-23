@@ -5,7 +5,7 @@ description = ""
 authors = ["darynarodicheva <daryna.r@gowombat.team>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=3.9,<3.12"
 fastapi = "^0.88.0"
 sqlmodel = "^0.0.8"
 SQLAlchemy = "1.4.35"
@@ -16,6 +16,7 @@ fastapi-utils = "^0.2.1"
 uvicorn = "^0.20.0"
 python-dotenv = "^0.21.0"
 psycopg2-binary = "^2.9.5"
+fastapi-filter = "^0.5.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
