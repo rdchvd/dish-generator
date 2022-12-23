@@ -23,7 +23,7 @@ class ProductsViewSet(BaseModelMixin):
     serializer_class = None
     response_class = ListProductResponseSerializer
     model = Product
-    # searching_fields = ["first_name", "last_name"]
+    searching_fields = ["name"]
 
     @products_router.get(base_url, response_model=Page[response_class])
     def list(
@@ -31,7 +31,6 @@ class ProductsViewSet(BaseModelMixin):
         params: ProductRequestSerializer = Depends(),
         page_params: Params = Depends(),
     ):
-
         return self.get(params, page_params)
 
     @products_router.get(detail_url, response_model=RetrieveProductResponseSerializer)
