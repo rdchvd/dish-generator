@@ -17,6 +17,7 @@ uvicorn = "^0.20.0"
 python-dotenv = "^0.21.0"
 psycopg2-binary = "^2.9.5"
 fastapi-filter = "^0.5.1"
+mangum = "^0.17.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

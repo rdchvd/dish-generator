@@ -18,16 +18,14 @@ class S3Storage:
 
     def upload(self, key: str, file_obj: BinaryIO) -> None:
         self.s3_client.upload_fileobj(
-            io.BytesIO(file_obj), settings.AWS_BUCKET_USER_MEDIA_NAME, key
+            io.BytesIO(file_obj), settings.S3_USER_MEDIA_NAME, key
         )
 
     def delete_object(self, key: str) -> None:
-        self.s3_client.delete_object(
-            Bucket=settings.AWS_BUCKET_USER_MEDIA_NAME, Key=key
-        )
+        self.s3_client.delete_object(Bucket=settings.S3_USER_MEDIA_NAME, Key=key)
 
     def get_url(self, key: str) -> str:
         return (
-            f"https://s3-{settings.AWS_BUCKET_USER_MEDIA_REGION}"
-            f".amazonaws.com/{settings.AWS_BUCKET_USER_MEDIA_NAME}/{key}"
+            f"https://s3-{settings.S3_USER_MEDIA_REGION}"
+            f".amazonaws.com/{settings.S3_USER_MEDIA_NAME}/{key}"
         )
