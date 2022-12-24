@@ -4,6 +4,7 @@ from uuid import UUID
 from fastapi import Query
 from pydantic import validator
 
+from app.products.models import Product, Recipe
 from utils.base_serailizer import BaseRequestSerializer, BaseResponseSerializer
 from utils.s3 import S3Storage
 
@@ -61,3 +62,38 @@ class RetrieveProductResponseSerializer(BaseResponseSerializer):
     @validator("image")
     def photo_uri(cls, value):
         return S3Storage().get_url(value) if value else None
+
+
+class ComponentCreateSerializer(BaseResponseSerializer):
+    name: str
+    is_dish: bool
+    calories: Optional[float] = None
+    proteins: Optional[float] = None
+    fats: Optional[float] = None
+    carbohydrates: Optional[float] = None
+    image: Optional[str] = None
+
+    class Meta:
+        orm_model = Product
+
+
+class RecipeCreateSerializer(BaseResponseSerializer):
+    text: str
+    components: Optional[List[Optional[ComponentCreateSerializer]]]
+
+    class Meta:
+        orm_model = Recipe
+
+
+class ProductCreateSerializer(BaseResponseSerializer):
+    name: str
+    is_dish: bool
+    recipes: Optional[List[Optional[RecipeCreateSerializer]]] = None
+    calories: Optional[float] = None
+    proteins: Optional[float] = None
+    fats: Optional[float] = None
+    carbohydrates: Optional[float] = None
+    image: Optional[str] = None
+
+    class Meta:
+        orm_model = Product

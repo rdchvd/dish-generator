@@ -16,10 +16,13 @@ class S3Storage:
             aws_secret_access_key=settings.S3_SECRET_ACCESS_KEY,
         )
 
-    def upload(self, key: str, file_obj: BinaryIO) -> None:
+    def upload_base64(self, key: str, file_obj: BinaryIO) -> None:
         self.s3_client.upload_fileobj(
             io.BytesIO(file_obj), settings.S3_USER_MEDIA_NAME, key
         )
+
+    def upload_file(self, key: str, file_obj) -> None:
+        self.s3_client.upload_fileobj(file_obj, settings.S3_USER_MEDIA_NAME, key)
 
     def delete_object(self, key: str) -> None:
         self.s3_client.delete_object(Bucket=settings.S3_USER_MEDIA_NAME, Key=key)
