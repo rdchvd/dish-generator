@@ -34,11 +34,7 @@ class ProductsViewSet(BaseModelMixin):
         products_filter: ProductFilter = FilterDepends(ProductFilter),
         page_params: Params = Depends(),
     ):
-        # print()
-        # Components = aliased(self.model)
         query = select(self.model)
-        # if products_filter.recipe__components__name__in:
-        #     query = query.join()
 
         query = products_filter.sort(query)
         query = products_filter.filter(query)
