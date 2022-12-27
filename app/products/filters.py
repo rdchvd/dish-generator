@@ -1,26 +1,10 @@
 from typing import Any, Optional
 
-from fastapi_filter import FilterDepends, with_prefix
 from fastapi_filter.contrib.sqlalchemy import Filter
 from pydantic import validator
 
-from app.products.models import Product, Recipe
-
-
-class ComponentFilter(Filter):
-    name__in: Optional[list[str]]
-
-    class Constants(Filter.Constants):
-        model = Product
-
-
-class RecipeFilter(Filter):
-    components: Optional[ComponentFilter] = FilterDepends(
-        with_prefix("components", ComponentFilter)
-    )
-
-    class Constants(Filter.Constants):
-        model = Recipe
+from app.products.models import Product
+from app.products.validators import validate_float
 
 
 class ProductFilter(Filter):
@@ -45,34 +29,23 @@ class ProductFilter(Filter):
         model = Product
         search_model_fields = ["name"]
 
-    @validator("calories__lte")
-    def validate_calories__lte(cls, value):
-        return float(value) if value else None
-
-    @validator("calories__gte")
-    def validate_calories__gte(cls, value):
-        return float(value) if value else None
-
-    @validator("proteins__lte")
-    def validate_proteins__lte(cls, value):
-        return float(value) if value else None
-
-    @validator("proteins__gte")
-    def validate_proteins__gte(cls, value):
-        return float(value) if value else None
-
-    @validator("fats__lte")
-    def validate_fats__lte(cls, value):
-        return float(value) if value else None
-
-    @validator("fats__gte")
-    def validate_fats__gte(cls, value):
-        return float(value) if value else None
-
-    @validator("carbohydrates__lte")
-    def validate_carbohydrates__lte(cls, value):
-        return float(value) if value else None
-
-    @validator("carbohydrates__gte")
-    def validate_carbohydrates__gte(cls, value):
-        return float(value) if value else None
+    _validate_calories__lte = validator("calories__lte", allow_reuse=True)(
+        validate_float
+    )
+    _validate_calories__gte = validator("calories__gte", allow_reuse=True)(
+        validate_float
+    )
+    _validate_proteins__lte = validator("proteins__lte", allow_reuse=True)(
+        validate_float
+    )
+    _validate_proteins__gte = validator("proteins__gte", allow_reuse=True)(
+        validate_float
+    )
+    _validate_fats__lte = validator("fats__lte", allow_reuse=True)(validate_float)
+    _validate_fats__gte = validator("fats__lte", allow_reuse=True)(validate_float)
+    _validate_carbohydrates__lte = validator("carbohydrates__lte", allow_reuse=True)(
+        validate_float
+    )
+    _validate_carbohydrates__gte = validator("carbohydrates__gte", allow_reuse=True)(
+        validate_float
+    )
